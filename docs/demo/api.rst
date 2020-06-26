@@ -7,11 +7,19 @@ API documentation and generated content
 :mod:`test_py_module`
 =====================
 
-.. automodule:: test_py_module.test
-    :members:
-    :private-members:
-    :special-members:
+.. only:: python3
 
+    .. automodule:: test_py_module.test
+        :members:
+        :private-members:
+        :special-members:
+
+.. only:: python2
+
+    .. automodule:: test_py_module.test_py27
+        :members:
+        :private-members:
+        :special-members:
 
 C++ API
 =======
@@ -99,7 +107,7 @@ JavaScript API
 Generated Index
 ===============
 
-Part of the sphinx build process in generate and index file: :ref:`genindex`.
+Part of the sphinx build process is to generate an index file: :ref:`genindex`.
 
 
 Optional parameter args
@@ -137,3 +145,26 @@ Data
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce congue elit eu hendrerit mattis.
 
 Some data link :data:`Data_item_1`.
+
+
+Sphinx Extensions
+=================
+
+sphinx.ext.autosummary
+----------------------
+
+.. only:: python3
+
+    .. autosummary::
+
+        test_py_module.test.add_numbers
+        test_py_module.test.subtract_numbers
+        test_py_module.test.Foo
+
+.. only:: python2
+
+    .. autosummary::
+
+        test_py_module.test_py27.add_numbers
+        test_py_module.test_py27.subtract_numbers
+        test_py_module.test_py27.Foo
