@@ -63,9 +63,6 @@
            {%- endif %}
 
 
-             <li><a title="SWAG Shop" href="https://shop.ardupilot.org">SWAG</a></li>
-
-           
            {# Display project news and/or history #}
            {%- if hasdoc('docs/project-news') or hasdoc('docs/common-history-of-ardupilot') or hasdoc('docs/docs/common-acknowledgments') or hasdoc('docs/docs/common-wiki_editing_guide') %}
                         <li><a title="{{ _('About') }}" href="{{ pathto('index') }}">{{ _('About') }}</a>
@@ -89,21 +86,5 @@
            {%- endif %}
         </ul>
         
-<style>
-#jdlogo {
-  top: 10px;
-  right: 20px;
-  position: absolute;
-  color: #dddddd;
-}
-#jdlogo a:visited,
-#jdlogo a:link {
-  color: #9B59B6;
-}
-#jdlogo a:hover,
-#jdlogo a:active {
-  color: #CACACA;
-}
-</style>
 
 </div>
