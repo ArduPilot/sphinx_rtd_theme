@@ -16,6 +16,23 @@
    {%- set display_gitlab = True %}
 {%- endif %}
 
+{%- if not pagename=='index' and not pagename=='docs/parameters' %}
+   {%- set display_github = True %}
+   {%- set github_user = 'ArduPilot' %}
+   {%- set github_repo = 'ardupilot_wiki' %}
+   {%- set github_version = 'master' %}
+   {%- set conf_py_path = '/'+shorttitle+'/source/' %}
+   {%- if pagename | truncate(12, end='') == 'docs/common-' %}
+      {%- set conf_py_path = '/common/source/' %}
+   {%- endif %}
+{%- endif %}
+
+{%- if meta is defined and meta is not none %}
+   {%- set check_meta = True %}
+{%- else %}
+   {%- set check_meta = False %}
+{%- endif %}
+
 {%- set display_vcs_links = display_vcs_links if display_vcs_links is defined else True %}
 
 {#- Translators: This is an ARIA section label for page links, including previous/next page link and links to GitHub/GitLab/etc. -#}

@@ -13,6 +13,13 @@
 {%- set (_ver_major, _ver_minor, _ver_bugfix) = sphinx_version.split('.') | map('int') -%}
 {%- set sphinx_version_info = (_ver_major, _ver_minor, _ver_bugfix) -%}
 
+<!-- Path to wiki directories, without backslash -->
+{%- if target == 'local' | lower %}
+    {%- set target = '../..' %}
+{%- elif target == None %}
+    {%- set target = '../..' %}
+{%- endif %}
+
 <!DOCTYPE html>
 <html class="{{ sphinx_writer }}" lang="{{ lang_attr }}" >
 <head>
@@ -90,6 +97,7 @@
       {%- endfor %}
     {%- endif %}
     <script src="{{ pathto('_static/js/theme.js', 1) }}"></script>
+    <script src="{{ pathto('_static/js/menubar.js', 1) }}"></script>
 
     {#- OPENSEARCH #}
     {%- if use_opensearch %}
@@ -125,7 +133,9 @@
 
 <body class="wy-body-for-nav">
 
-  {%- block extrabody %} {% endblock %}
+  {%- block extrabody %}
+    {%- include "z_top_menu.html" %}
+  {%- endblock %}
   <div class="wy-grid-for-nav">
     {#- SIDE NAV, TOGGLES ON MOBILE #}
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
@@ -163,7 +173,9 @@
             {%- endif %}
           {%- endif %}
 
-          {%- include "searchbox.html" %}
+          {%- if not shorttitle=='ardupilot' %}
+            {%- include "searchbox.html" %}
+          {%- endif %}
 
           {%- endblock %}
         </div>
@@ -183,6 +195,9 @@
               <div class="local-toc">{{ toc }}</div>
             {%- endif %}
           {%- endblock %}
+          <!-- add paypal and dronecode logos -->
+          {%- include "z_sidebar_additions.html" %}
+          <!-- endadd paypal and dronecode logos -->
         </div>
         {%- endblock %}
       </div>
