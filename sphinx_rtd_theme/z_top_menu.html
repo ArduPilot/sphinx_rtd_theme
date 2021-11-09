@@ -81,6 +81,9 @@
                  {%- if hasdoc('docs/common-wiki_editing_guide') %}
                    <li><a title="{{ _('Wiki Editing Guide') }}" href="{{ pathto('docs/common-wiki_editing_guide') }}">{{ _('Wiki Editing Guide') }}</a></li>
                  {%- endif %}
+                 {%- if hasdoc('docs/common-partners') %}
+                   <li><a title="{{ _('Partners Program') }}" href="{{ pathto('docs/common-partners') }}">{{ _('Partners Program') }}</a></li>
+                 {%- endif %}
                </ul>
              </li>
            {%- endif %}
