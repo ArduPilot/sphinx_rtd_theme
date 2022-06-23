@@ -16,7 +16,7 @@
   {%- set page_escaped = pagename | escape() %}
   {%- set title_escaped = title | escape() %}
   {%- set github_issue_url = 'https://github.com/ArduPilot/ardupilot_wiki/issues/new?title=' + title_escaped + '&body=' + '[' +  title_escaped  +'](https://ardupilot.org/' + shorttitle + '/' + page_escaped +'.html)%20-%20Describe%20the%20issue/suggestion%20and%20improve%20the%20title.%20Please%20keep%20a%20link%20to%20the%20original%20article%20if%20relevant.&labels=docs' %}
-  Questions, issues, and suggestions about this page can be raised on the <a href="https://discuss.ardupilot.org">forums</a>. Issues and suggestions may be posted on the forums or the <a href="{{ github_issue_url }}">Github Issue Tracker</a>.
+  Questions, issues, and suggestions about this page can be raised on the <a href="https://discuss.ardupilot.org">forums</a>.
   <hr/>
   {%- endif %}
 
