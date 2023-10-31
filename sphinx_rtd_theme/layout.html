@@ -125,7 +125,9 @@
 
 <body class="wy-body-for-nav">
 
-  {%- block extrabody %} {% endblock %}
+  {%- block extrabody %}
+    {%- include "z_top_menu.html" %}
+  {%- endblock %}
   <div class="wy-grid-for-nav">
     {#- SIDE NAV, TOGGLES ON MOBILE #}
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
@@ -156,7 +158,9 @@
             {%- endif %}
           {%- endif %}
 
-          {%- include "searchbox.html" %}
+          {%- if not shorttitle=='ardupilot' %}
+            {%- include "searchbox.html" %}
+          {%- endif %}
 
           {%- endblock %}
         </div>
@@ -176,6 +180,9 @@
               <div class="local-toc">{{ toc }}</div>
             {%- endif %}
           {%- endblock %}
+          <!-- add paypal and dronecode logos -->
+          {%- include "z_sidebar_additions.html" %}
+          <!-- endadd paypal and dronecode logos -->
         </div>
         {%- endblock %}
       </div>
