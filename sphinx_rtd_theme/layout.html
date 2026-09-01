@@ -121,6 +121,61 @@
     <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
     {%- endif %}
   {%- endblock %}
+  {#- Offline reading (ardupilot_wiki): the manifest and pwa.js, which
+      registers the service worker only after a reader opts in. Served from
+      the site root, hence the absolute paths. Off until the consuming
+      project sets offline_hooks, so this theme can merge before the site
+      serves those files. #}
+  {%- if theme_offline_hooks|tobool %}
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2980b9" />
+  <link rel="apple-touch-icon" href="/apple-icon.png" />
+  <script src="/js/pwa.js" defer="defer"></script>
+  {%- if pagename == 'docs/common-offline' %}
+  <link rel="stylesheet" href="{{ pathto('_static/common_offline.css', 1) }}" />
+  {%- endif %}
+  {#- The 5.8 MB parameter pages: let the browser skip laying out groups that
+      are off screen, and land on the anchor before the whole page has parsed. #}
+  {%- if pagename.startswith('docs/binary-features') %}
+  <style>
+    /* Each board is the lazy unit here; the one parent section holding all
+       308 of them is nearly the whole 8.5 MB page and must stay visible. */
+    .rst-content #boards > section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 6000px;
+    }
+    /* Paper has no scrollbar to stabilise; render everything. Selector
+       matches the auto rule's specificity, or this never applies. */
+    @media print {
+      .rst-content section, .rst-content #boards > section {
+        content-visibility: visible;
+        contain-intrinsic-size: none;
+      }
+    }
+  </style>
+  {%- elif pagename.startswith('docs/parameters') or
+         pagename.startswith('docs/AP_Periph-Parameters') %}
+  <style>
+    /* One group per parameter prefix (the h2 sections); the fallback tracks
+       each page's measured mean group height. */
+    .rst-content section > section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto {{ '5500px' if pagename.startswith('docs/parameters') else '5000px' }};
+    }
+    .rst-content section > section > section {
+      content-visibility: visible;
+      contain-intrinsic-size: none;
+    }
+    /* Matches the auto rule's specificity, or this never applies. */
+    @media print {
+      .rst-content section, .rst-content section > section {
+        content-visibility: visible;
+        contain-intrinsic-size: none;
+      }
+    }
+  </style>
+  {%- endif %}
+  {%- endif %}
   {%- block extrahead %} {% endblock %}
 </head>
 

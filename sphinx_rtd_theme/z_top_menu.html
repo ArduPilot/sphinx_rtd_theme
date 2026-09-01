@@ -88,6 +88,9 @@
                </ul>
              </li>
            {%- endif %}
+           {%- if theme_offline_hooks|tobool and hasdoc('docs/common-offline') %}
+             <li><a title="{{ _('Offline') }}" href="{{ pathto('docs/common-offline') }}">{{ _('Offline') }}</a></li>
+           {%- endif %}
         </ul>
         
 
